@@ -1,10 +1,8 @@
-import crypto from "crypto";
-
 class Todo {
   name: string;
   description: string;
   complete: boolean;
-  id = crypto.randomBytes(16).toString("hex"); // This is used to generate random id for each todo in our todolist
+
   constructor(name: string, description: string) {
     this.name = name;
     this.description = description;

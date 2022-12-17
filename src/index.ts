@@ -1,8 +1,8 @@
 import inquirer from "inquirer";
+import { exit } from "process";
 import Todo from "./Todo.js";
 import TodoList from "./TodoList.js";
 
-// const TodoList: Todo[] = [];
 const menuChoices = [
   "Add a new todo",
   "Remove a todo",
@@ -13,30 +13,41 @@ const menuChoices = [
 const list = new TodoList();
 
 async function main() {
-  let loop = true;
-  while (loop) {
-    const { menuChoice } = await inquirer.prompt({
-      name: "menuChoice",
-      message: "Select an option",
-      type: "rawlist",
-      choices: menuChoices,
-    });
+  const { menuChoice } = await inquirer.prompt({
+    name: "menuChoice",
+    message: "Select an option",
+    type: "rawlist",
+    choices: menuChoices,
+  });
 
-    switch (menuChoice) {
-      case menuChoices[0]:
-        addNewTodo();
-        break;
-      case menuChoices[1]:
-        console.log("Case 2");
-        break;
-      case menuChoices[2]:
-        console.log("Case3");
-        break;
-      default:
-        loop = false;
-        break;
-    }
+  if (menuChoice === menuChoices[0]) {
+    addNewTodo();
+  } else if (menuChoice === menuChoices[1]) {
+    remonveTodo();
+  } else if (menuChoice === menuChoices[2]) {
+    list.printTodoList();
+    main();
+  } else {
+    exit(0);
   }
+}
+
+async function remonveTodo() {
+  const { index } = await inquirer.prompt({
+    name: "index",
+    message: "Enter Todo index to remove",
+    type: "input",
+    validate: (input: string) => {
+      if (input === "") {
+        return "Please enter a valid index";
+      } else {
+        return true;
+      }
+    },
+  });
+
+  list.removeTodo(index);
+  main();
 }
 
 async function addNewTodo() {
@@ -67,6 +78,7 @@ async function addNewTodo() {
     },
   ]);
   const todo = new Todo(name, description);
-  list.addTodoList(todo);
+  list.addTodo(todo);
+  main();
 }
 main();

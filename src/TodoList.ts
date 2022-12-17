@@ -6,23 +6,20 @@ class TodoList {
     this.todoList = [];
   }
 
-  addTodoList(item: Todo) {
+  addTodo(item: Todo) {
     this.todoList.push(item);
   }
 
-  removeTodoList(item: Todo) {
-    this.todoList.filter((todo) => {
-      if (todo.id !== item.id) {
-        return true;
-      }
-      return false;
-    });
+  removeTodo(index: number) {
+    this.todoList.splice(index, 1);
   }
 
   printTodoList() {
-    // for (let i = 0; i < this.todoList.length; i++) {
-    console.log(this.todoList);
-    // }
+    if (this.todoList.length > 0) {
+      console.log(this.todoList);
+    }
+
+    console.log("No Todo's in the list");
   }
 }
 
