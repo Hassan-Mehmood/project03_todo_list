@@ -16,7 +16,15 @@ class TodoList {
 
   printTodoList() {
     if (this.todoList.length > 0) {
-      console.log(this.todoList);
+      this.todoList.forEach((todo) => {
+        console.log(`
+      -------------------------------------
+      Name: ${todo.getName}
+      Description: ${todo.getDescription}
+      Status: ${todo.getstatus}
+      -------------------------------------
+      `);
+      });
     }
 
     console.log("No Todo's in the list");

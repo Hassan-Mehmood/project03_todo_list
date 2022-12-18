@@ -1,13 +1,11 @@
-import crypto from "crypto";
 class Todo {
     name;
     description;
-    complete;
-    id = crypto.randomBytes(16).toString("hex"); // This is used to generate random id for each todo in our todolist
+    status;
     constructor(name, description) {
         this.name = name;
         this.description = description;
-        this.complete = false;
+        this.status = false;
     }
     get getName() {
         return this.name;
@@ -21,11 +19,11 @@ class Todo {
     set setDescription(description) {
         this.description = description;
     }
-    get getComplete() {
-        return this.complete;
+    get getstatus() {
+        return this.status;
     }
-    set setComplete(complete) {
-        this.complete = complete;
+    set setstatus(status) {
+        this.status = status;
     }
 }
 export default Todo;

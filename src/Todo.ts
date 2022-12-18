@@ -1,12 +1,12 @@
 class Todo {
-  name: string;
-  description: string;
-  complete: boolean;
+  private name: string;
+  private description: string;
+  private status: boolean;
 
   constructor(name: string, description: string) {
     this.name = name;
     this.description = description;
-    this.complete = false;
+    this.status = false;
   }
 
   get getName() {
@@ -23,11 +23,11 @@ class Todo {
     this.description = description;
   }
 
-  get getComplete() {
-    return this.complete;
+  get getstatus() {
+    return this.status;
   }
-  set setComplete(complete: boolean) {
-    this.complete = complete;
+  set setstatus(status: boolean) {
+    this.status = status;
   }
 }
 
