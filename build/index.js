@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 import { exit } from "process";
 import Todo from "./Todo.js";
